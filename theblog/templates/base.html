@@ -1,0 +1,669 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+      <!--
+
+       font-family: 'Allerta Stencil', sans-serif;
+font-family: 'Barriecito', cursive;
+font-family: 'Bowlby One SC', cursive;
+font-family: 'Ceviche One', cursive;
+font-family: 'Codystar', cursive;
+font-family: 'Fira Code', monospace;
+font-family: 'Flamenco', cursive;
+font-family: 'Major Mono Display', monospace;
+font-family: 'Monofett', cursive;
+font-family: 'Space Mono', monospace;
+font-family: 'Roboto Mono', monospace;
+font-family: 'Jockey One', sans-serif;
+font-family: 'Atma', cursive;
+       -->
+  <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Barriecito&family=Bowlby+One+SC&family=Ceviche+One&family=Codystar&family=Fira+Code&family=Flamenco&family=Major+Mono+Display&family=Monofett&family=Space+Mono&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Atma:wght@600&display=swap" rel="stylesheet">
+    <title>
+      {% block title %}
+          CodingFiction.com
+      {% endblock %}
+    </title>
+     <style>
+         body { margin: 0px ! important; padding : 0px ! important; background-color: #F4F6F6;
+
+          background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+
+
+          }
+
+
+         .marker { background-color: yellow; }
+         .card_sec{
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.card_f {
+  /*float: left;*/
+  max-width: 33.333%;
+  padding: .75rem;
+  margin-bottom: 2rem;
+  border: 0;
+  flex-basis: 33.333%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.card_f > img {
+  margin-bottom: .75rem;
+}
+
+.card_t {
+  font-size: 85%;
+}
+          .card-img-top { radius-top : 0px ! important; }
+         .navbar { background-color: #fff  ! important; border-bottom : 1px solid #ccc;  }
+         .navbar-brand { font-family: 'Major Mono Display', monospace; font-size: 25px ! important; color : #000 !important;}
+         .nav-item a {color : #000 !important;}
+         .blog_item_sec { border-left : 1px solid #ccc; border-right : 1px solid #ccc; border-bottom : 1px solid #ccc; }
+         .msp_head { border-top: 10px solid #000; border-bottom: 1px solid  #ccc; }
+         .msp_head span {  color: #000;  font-family: 'Bowlby One SC', cursive; }
+         .form_w {  width: 50% ! important;}
+         .card { border : none ! important;  }
+         .cat_item { list-style : none; background-color: #000 ! important;  }
+         .cat_sec { border-bottom: 1px dotted #ccc;}
+         .card { border-radius: 0; }
+         .form_g { width: 50%; }
+          .card_img {display:inline-block; position:relative;}
+          .card-img-top { height: 200px  ! important; }
+          .cat_ovr_img {position:absolute;top:0;left:0; background-color: #BA4A00  ; color: #fff ! important ;}
+          .cat_ovr_img  a { color: #fff ! important; font-family: 'Space Mono', monospace; font-size: 13px ; padding-left: 10px ; padding-right: 10px ; }
+         .cat_item li a { font-family: 'Fira Code', monospace;  color: #fff; }
+          .blog_head_img { height : 500px ; }
+          .blog_usr_name { font-size: 12px ; font-family: 'Fira Code', monospace; color: #424949; }
+          .blog_date { font-size: 12px ; font-family: 'Fira Code', monospace; color: #424949;  }
+          .blog_ed a { font-size: 15px ; font-family: 'Fira Code', monospace; color: #424949; }
+          .blog_dt a { font-size: 15px ; font-family: 'Fira Code', monospace; color: #424949; }
+          .card-text a { font-size: 20px ; font-family: 'Jockey One', sans-serif; text-decoration : none; color: #000;  }
+          .navbar-toggler { border : none ! important; }
+          .navbar-toggler:focus { border: none ! important; outline : none ! important;  }
+           .no_blog { margin-top: 100px; background-color: blue; }
+          .no_blog h1 { font-family: 'Codystar', cursive; font-size: 40px ; color: #fff; }
+          .no_blog_s  { padding-top: 10px; background-color: yellow; }
+          .no_blog_s a { font-family: 'Codystar', cursive;  font-size: 25px; color: #000; }
+           .sign_up { border: 1px solid #000; }
+           .sign_up a { }
+           .log_in { background-color: #000 ; margin-left: 5px; }
+           .log_in a { color: #fff ! important; }
+            .edit_prof_form {  }
+            .edit_prof_form li { list-style : none; margin-bottom: 20px; }
+           .blog_prof { border-left: 3px solid #555; border-right: 3px solid #555; box-shadow: 2px 2px 2px 2px #ccc; }
+           .blog_usr_dt img { height: 60px ; width: 60px; border-radius: 50%; border: 4px solid #ccc;  }
+           .blog_page_head {  font-family: 'Space Mono', monospace; border-left: 8px solid #555; text-transform:uppercase; font-size: 40px }
+           .newsltter_btn { font-size: 12px; margin-top: 8px; border: none; background-color: #000 ! important; border-radius: 0px; }
+           .nav_header { background-color: #000; }
+           .profile_drop { height: 250px; overflow : auto; white-space: nowrap; border: 4px double blue; }
+            .errorlist {  color: #fff; background-color: red; list-style: none; }
+
+           div.scrollmenu {
+
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  font-family: 'Fira Code', monospace;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #F4F6F6;
+  color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+footer {
+    background-color: black;
+    font-family: "Lato", sans-serif;
+    padding: 85px 0 285px 0;
+}
+
+.footer-inner {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 120px;
+    max-width: 1170px;
+    position: relative;
+}
+
+.footer-item {
+    float: left;
+    margin: 0 7.2% 0 0;
+}
+
+.footer-item:nth-of-type(4) {
+    display: none;
+}
+
+.footer-item:nth-of-type(7) {
+    float: right;
+    margin-right: 0;
+}
+
+.footer-button {
+    color: white;
+    position: relative;
+    font-weight: 400;
+    font-size: 16px;
+    transition: 1s;
+    transition-delay: .2s;
+    padding: 14px;
+}
+
+.footer-button:after {
+    content: "";
+    position: absolute;
+    top: 45px;
+    right: 13px;
+    background-color: white;
+    height: 1px;
+    width: 86px;
+    transition: .6s;
+}
+
+.footer-button:hover {
+    color: black;
+    background-color: white;
+}
+
+.footer-button:hover:after {
+    width: 112px;
+    right: 0px;
+}
+
+.footer-item h1 {
+    font-weight: 900;
+    color: white;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.footer-item h2 {
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 13px;
+    color: #d1d1d1;
+    letter-spacing: 0.03em;
+    padding: 15px 0 0 0;
+}
+
+.footer-item .color {
+    color: white;
+    font-weight: 400;
+}
+
+.footer-item h3 {
+    font-weight: 400;
+    font-size: 13px;
+    color: white;
+    margin: 0;
+    padding-bottom: 9px;
+    letter-spacing: 0.03em;
+}
+
+.footer-item h3.desktop {
+    padding-top: 30px;
+}
+
+.footer-item ul {
+    line-height: 1.8;
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-item li {
+    font-weight: 300;
+    font-size: 13px;
+    color: #d1d1d1;
+    letter-spacing: 0.03em;
+}
+
+.footer-item p {
+    font-weight: 300;
+    font-size: 13px;
+    padding: 0;
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+}
+
+.footer-item a {
+    text-decoration: none;
+    color: #d1d1d1;
+}
+
+.footer-item a:hover {
+    color: white;
+}
+
+.desktop {
+    display: auto;
+}
+
+.footer-inner:after {
+    content: "© 2020 Envoy. All Rights Reserved.";
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    font-size: 13px;
+    color: #d1d1d1;
+    position: absolute;
+    top: 260px;
+    clear: both;
+    display: block;
+}
+
+@media (max-width: 1024px) {
+
+footer {
+    padding: 50px 0 70px 0 !important;
+}
+
+.footer-inner {
+    border-bottom: 1px solid #333;
+    padding-bottom: 490px;
+    margin-bottom: 50px;
+}
+
+.footer-item {
+    margin: 0 0 42px 0;
+    width: 50%;
+}
+
+.footer-item:nth-of-type(1) {
+    border-bottom: 1px solid #333;
+    padding-bottom: 32px;
+    float: none;
+    width: 100%;
+}
+
+.footer-item:nth-of-type(2) {
+    clear: both;
+}
+
+.footer-item:nth-of-type(4) {
+    clear: both;
+    display: block;
+}
+
+.footer-item:nth-of-type(6) {
+    clear: both;
+}
+
+.footer-item:nth-of-type(7) {
+    clear: both;
+    float: left;
+    margin: 20px 0 0 -13px;
+}
+
+.desktop {
+    display: none;
+}
+
+.footer-inner:after {
+    top: 730px;
+}
+}
+
+
+
+
+
+
+
+            @media only screen and (max-width: 900px) {
+
+  body {
+
+  }
+               .login_wl { display: none  ! important; }
+              .add_post { border: 2px solid #000; }
+              .nav-item { margin-top: 15px ! important;  }
+             .profile_drop { background-color: #ffff; border: 2px dotted #000; }
+             div.scrollmenu a { font-size: 13px; padding-top: 5px; padding-bottom: 5px; }
+            .desktop_ads_sec { display: none ! important; }
+            .sign_up { border: none; }
+            .nav-item {bottom-border: 1px solid #ccc ! important;}
+             .log_in { background: none; }
+             .log_in a { color: #000 ! important; }
+           .blog_head_img { height : auto ! important ; }
+           .col-md-3 { border-bottom : 1px solid #ccc ! important; }
+
+          .form_w {  width: auto ! important; }
+          .form_g { width: 100%; }
+          .col-md-4 { border-bottom : 1px solid #ccc; }
+   }
+         @media only screen and (max-width: 600px) {
+  body {
+
+  }
+   div.scrollmenu a { font-size: 13px; padding-top: 5px; padding-bottom: 5px; }
+   .desktop_ads_sec { display: none ! important; }
+  .cat_ovr_img a { font-size: 10px ; padding-left: 10px ; padding-right: 10px ;  }
+  .col-md-3 { border-bottom : 1px solid #ccc ! important; }
+  .blog_head_img { height : auto ; }
+   .navbar-brand { font-size: 20px ! important; }
+   .no_blog { margin-top: 100px; }
+          .no_blog h1 { font-family: 'Codystar', cursive; font-size: 18px ; }
+          .no_blog_s a {font-family: 'Codystar', cursive; font-size: 15px;}
+
+
+}
+   @media only screen and (max-width: 570px) {
+  body {
+
+  }
+   div.scrollmenu a { font-size: 13px; padding-top: 5px; padding-bottom: 5px; }
+   .desktop_ads_sec { display: none ! important; }
+  .blog_usr_name { font-size: 12px ; }
+  .blog_date { font-size: 12px ; }
+   #id_pinterest_url , #id_bio,  #id_instagram_url,  #id_twitter_url,  #id_facebook_url ,  #id_website_url   { width: 100% ; }
+
+  .col-md-3 { border-bottom : 1px solid #ccc ! important; }
+
+  }
+   @media only screen and (max-width: 380px) {
+  body {
+
+  }
+   .blog_usr_name { font-size: 9px ; }
+  .blog_date { font-size: 9px ; }
+   #id_pinterest_url , #id_bio,  #id_instagram_url,  #id_twitter_url,  #id_facebook_url ,  #id_website_url   { width: 80% ; }
+
+  .col-md-3 { border-bottom : 1px solid #ccc ! important; }
+   .navbar-brand { font-size: 14px ! important; }
+  .navbar_menu svg { width: 19px ! important; height : 20px ! important;}
+  .cat_sec { display: none; }
+
+  .blog_head_img { height : auto ; }
+}
+     </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg ">
+  <a class="navbar-brand" href="{% url 'home' %}">CodingFiction.com</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar_menu">
+       <svg width="26px" height="26px" viewBox="0 0 16 16" class="bi bi-justify-left" fill="#000" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+       </svg>
+    </span>
+  </button>
+
+  <div class="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent">
+
+    <ul class="navbar-nav justify-content-end mr-5 navlink_sec">
+
+
+
+      {% if user.is_authenticated %}
+        <li class="mr-5 ">
+             <span>
+                       <!-- Button trigger modal -->
+                        <button type="button" title="newsletter subscribe" class="btn btn-primary small_f newsltter_btn px-2 py-1" data-toggle="modal" data-target="#exampleModalLong">
+                            SUBSCRIBE
+                        </button>
+                         <!-- Modal -->
+                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                 <div class="modal-content px-5 model_sec bg-dark" style="border-radius: 0px">
+                                           <div class="modal-header">
+
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                           <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                           </div>
+                        <div class="modal-body">
+                             <div class="wrapper">
+                                 <span>
+                                     <img src="https://images.pexels.com/photos/1535162/pexels-photo-1535162.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" style="width: 100%">
+                                 </span>
+                             </div>
+                         </div>
+
+                          </div>
+                               </div>
+                              </div>
+             </span>
+        </li>
+        <li class="nav-item nav_add_post " title="write a post">
+          <a class="nav-link " href="{% url 'add_post' %}">
+              <span>
+                  <svg width="25px" height="25px" viewBox="0 0 16 16" class="bi bi-pencil-square mx-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg>
+              </span>
+
+          </a>
+        </li>
+
+
+
+
+
+
+
+
+
+      {% else %}
+
+        <li class="nav-item sign_up small_f d-flex justify-content-center ">
+         <div class="container sign_up_sec">
+               <a class="nav-link" href="{% url 'register' %}">Sign Up</a>
+         </div>
+
+        </li>
+
+        <li class="nav-item log_in small_f d-flex justify-content-center">
+          <div class="container login_sec">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </div>
+        </li>
+
+      {% endif %}
+
+
+
+
+
+    </ul>
+{% if user.is_authenticated %}
+
+    <ul class="navbar-nav ">
+      <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" title="user profile" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <svg width="25px" height="25px" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                 <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu  dropdown-menu-right profile_drop" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item  profile_itm mb-3 mt-3 " href="{% url 'edit_profile' %}">
+                <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-gear" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z"/>
+                         <path fill-rule="evenodd" d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z"/>
+                </svg>
+                Settings</a>
+
+            {% if user.profile.id %}
+              <a class="dropdown-item profile_itm mb-3 " href="{% url 'edit_profile_page' user.profile.id %}">
+                  <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                  </svg>
+
+                  Edit Profile
+              </a>
+
+              <a class="dropdown-item profile_itm mb-3 " href="{% url 'show_profile_page' user.profile.id %}">
+                  <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-person-bounding-box" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                         <path fill-rule="evenodd" d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  </svg>
+                  Profile</a>
+
+
+            {% else %}
+            <a class="dropdown-item profile_itm mb-3 " href="{% url 'create_profile_page' %}">Create Profile Page</a>
+
+
+
+
+            {% endif %}
+
+
+          <a class="dropdown-item profile_itm mb-3 " href="{% url 'logout' %}">
+              <span>
+                  <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-box-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                       <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                  </svg>
+              </span>
+              Logout</a>
+
+
+
+          </div>
+      </li>
+
+
+
+    </ul>
+
+{% endif %}
+
+  </div>
+</nav>
+
+   <div class="wrapper nav_header">
+        <div class=" d-flex  scrollmenu ">
+       {% if cat_menu %}
+                          {% for item in cat_menu %}
+                                <a class=" col py-1 " style="border-right: 1px solid #fff" href="{% url 'category' item|slugify %}">
+                                    {{ item |upper }}
+                                </a>
+                          {% endfor %}
+       {% endif %}
+   </div>
+   </div>
+    <br/>
+    <div class="container">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <footer class="small_f">
+  <nav class="footer-inner">
+    <section class="footer-item">
+      <h1>
+           <a class="navbar-brand" style="color: #fff ! important" href="{% url 'home' %}">CodingFiction.com</a>
+      </h1>
+
+        <h2>
+            " Publish your passions your way "
+        </h2>
+    </section>
+
+    <section class="footer-item small_f">
+      <h3>Explore</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Capabilities</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+    </section>
+
+    <section class="footer-item">
+      <h3>Visit</h3>
+        <a href="#">
+        <p>Envoy So. California</p>
+        <p>34 Tesla, Ste 100</p>
+        <p>Irvine, Ca, USA 92618</p>
+        </a>
+
+      <h3 class="desktop">New Business</h3>
+        <p class="desktop"><a href="#">engage@weareenvoy.com</a></p>
+        <p class="desktop"><a href="#">949.333.3106</a></p>
+    </section>
+
+    <section class="footer-item">
+      <h3>New Business</h3>
+        <p><a href="#">Email us</a></p>
+        <p><a href="#">949.333.3106</a></p>
+    </section>
+
+    <section class="footer-item">
+      <h3>Follow</h3>
+        <ul>
+          <li><a href="https://www.instagram.com/codingfiction">Instagram</a></li>
+          <li><a href="https://twitter.com/CodingFiction">Twitter</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+    </section>
+
+    <section class="footer-item">
+      <h3>Legal</h3>
+        <ul>
+          <li><a href="{% url 'privacy_policy' %}">Terms</a></li>
+          <li><a href="{% url 'user_agreement' %}">Privacy</a></li>
+        </ul>
+    </section>
+
+    <section class="footer-item ">
+        <a href="#" class="footer-button">Next: About</a>
+    </section>
+  </nav>
+</footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>

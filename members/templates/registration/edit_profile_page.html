@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile Page{% endblock %}
+{% block content %}
+<style>
+   body { background: #020066; }
+   h { color: #fff;}
+	#id_bio { width: 100%; font-family: 'Space Mono', monospace;  height: 100px ! important; border: 3px solid #000 ! important; border-radius: 0;  }
+           #id_bio:focus { outline : none ! important;  color: blue; font-family: 'Space Mono', monospace; border: 3px dotted black ! important;  }
+           label {  font-family: 'Space Mono', monospace; }
+           .blog_page_usr { font-family: 'Space Mono', monospace; }
+           .small_f { font-family: 'Space Mono', monospace; }
+           .blog_usr_dt {  }
+           .edit_profile_sec {   }
+           .form_w { background: yellow; padding-top: 60px; padding-bottom: 20px; box-shadow: 10px 20px #fff;}
+           label { color:#000;}
+           .like_blog_btn { background-color: none ! important;   }
+           #id_profile_pic { background-color: #fff ! important  ; border: 2px dotted blue  ! important; width: 100%; }
+           #id_pinterest_url ,  #id_instagram_url,  #id_twitter_url,  #id_facebook_url ,  #id_website_url   { padding-top: 10px; padding-bottom: 10px; width: 100% ; color: blue; font-family: 'Space Mono', monospace; border: 1px solid #000 ! important; border-radius: 0px ! important; }
+           .publish_btn { color: #000; border-radius: 0px; background: #ffF ! important; border: 1px solid #000 ! important; }
+          .publish_btn:hover { color: #000 ; font-weight: 666; border: 3px solid #000 ! important; }
+            #id_profile_pic  { outline: blue;  background: blue ! important; color: #fff;  }
+</style>
+
+{% if user.is_authenticated %}
+	{% if user.id == profile.user.id %}
+		<div class="container d-flex small_f justify-content-center">
+			<h>Edit Profile Page...</h>
+		</div>
+		<br/><br/>
+<div class="container d-flex small_f edit_profile_sec justify-content-center">
+	<div class="container form_w" >
+		<div class="form-group">
+	<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+                <p>
+				      <label class="label" for="id_bio">Bio:</label>
+				        {{ form.bio }}
+			      </p>
+				 <p>
+				      <label class="label" for="id_website_url">Website Url:</label>
+				        {{ form.website_url }}
+			      </p>
+				 <p>
+				      <label class="label" for="id_facebook_url">Facebook Url:</label>
+				        {{ form.facebook_url }}
+			      </p>
+				 <p>
+				      <label class="label" for="id_instagram_url">Instagram:</label>
+				        {{ form.instagram_url }}
+			      </p>
+		          <p>
+				      <label class="label" for="id_twitter_url">Twitter:</label>
+				        {{ form.twitter_url }}
+			      </p>
+		          <p>
+				      <label class="label" for="id_pinterest_url">Pinterest:</label>
+				        {{ form.pinterest_url }}
+			      </p>
+		          <div class="container d-flex justify-content-center">
+					   <p>
+				          <label class="label" for="id_profile_pic" style="color:"></label>
+				               {{ form.profile_pic }}
+					   </p>
+				  </div>
+
+
+				<div class="container d-flex small_f justify-content-center">
+			<button class="btn btn-secondary publish_btn">Update</button>
+		 </div>
+		</div>
+</div>
+</div>
+
+
+
+	{% else %}
+
+	You are not the correct User To Edit This Page...
+	{% endif %}
+
+{% else %}
+
+	You're not allowed here! (and you know it...)
+
+
+{% endif %}
+
+
+{% endblock %}

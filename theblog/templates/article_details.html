@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title_tag }}{% endblock %}
+
+<style>
+	code { background-color: #fff ! important; }
+</style>
+
+
+{% block content %}
+ <audio id="audio" src="{% static 'liked.mp3' %}"></audio>
+ <audio id="audio2" src="{% static 'blog_liked.mp3' %}"></audio>
+
+<div class="container">
+
+	<small class="blog_page_usr">
+		{{ post.author.first_name | upper }}
+		{{ post.author.last_name| upper }} -
+		{{ post.post_date|date:'F' | upper }} {{ post.post_date.day| upper}}
+		{{ post.post_date.time |upper }}
+		
+		{% if user.is_authenticated %}
+			{% if user.id == post.author.id %}
+				- <a href="{% url 'update_post' post.pk %}">Edit</a>
+
+				<a href="{% url 'delete_post' post.pk %}">Delete</a>
+			{% endif %}
+		{% endif %}
+	</small>
+	<br/>
+	<br/>
+	<br/>
+	<div class="blog_page_head">
+		<h1 class="ml-1">{{ post.title }}</h1>
+	</div>
+</div>
+
+
+	<hr>
+	<br/>
+
+  <div class="container " >
+	{% if post.header_image %}
+		<div class="container d-flex justify-content-center blog_head_img" style="background: #ccc">
+      <img src="{{ post.header_image.url }}" style="width: 100%; "  class="responsive" >
+    </div>
+	{% endif %}
+  </div>
+	<br/><br/>
+    <div class="container">
+		{{ post.body|safe }}
+	</div>
+
+
+	<hr>
+	
+<div class="container d-flex justify-content-center">
+	<form action="{% url 'like_post' post.pk %}"  method="POST">
+		{% csrf_token %}
+	
+	{% if user.is_authenticated %}
+		{% if liked %}
+			<button type="submit", name="post_id",  value="{{ post.id }}", onclick="playunlike()" class="btn like_blog_btn ">Unlike</button>
+		{% else %}	
+			<button type="submit", name="post_id", value="{{ post.id }}", onclick="playliked()" class="btn btn-primary btn-sm">Like</button>
+
+		{% endif %}
+	{% else %}
+		<small class="small_f"><a href="{% url 'login' %}" >Login</a> to like</small>
+	{% endif %}
+	
+		- {{ total_likes }} Likes
+	
+	</form>
+</div>
+<hr>
+
+
+
+<br/>
+{% if post.author.profile %}
+<div class="container  small_f d-flex justify-content-center">
+	About author
+</div>
+<br/>
+<br/>
+<div class="container blog_prof" >
+	<div class="card mb-3 blog_usr_dt">
+  <div class="row no-gutters">
+    <div class="col-md-2 d-flex justify-content-center blog_img_sec">
+{% if post.author.profile.profile_pic %}
+      <img src="{{ post.author.profile.profile_pic.url }}" class="card-img mt-2">
+
+{% else %}
+	<img src="{% static 'theblog/images/default_profile_pic.png' %}" class="card-img">
+{% endif %}
+    </div>
+    <div class="col-md-10">
+      <div class="card-body blog_usr_dt d-flex justify-content-center ">
+        <h5 class="card-title small_f mx-1">
+        	{{ post.author.first_name }}
+			{{ post.author.last_name }}
+		</h5>
+
+<p class="small text-muted mx-1">
+
+
+	{% if post.author.profile.website_url %}
+		| <a href="{{ post.author.profile.website_url }}">  Website</a>
+	{% endif %}
+
+
+	{% if post.author.profile.facebook_url %}
+		 | <a href="{{ post.author.profile.facebook_url }}">Facebook</a>
+	{% endif %}
+
+
+	{% if post.author.profile.twitter_url %}
+		| <a href="{{ post.author.profile.twitter_url }}">Twitter</a>
+	{% endif %}
+
+
+	{% if post.author.profile.instagram_url %}
+		| <a href="{{ post.author.profile.instagram_url }}">Instagram</a>
+	{% endif %}
+
+
+	{% if post.author.profile.pinterest_url %}
+		| <a href="{{ post.author.profile.pinterest_url }}">Pinterest</a>
+	{% endif %}
+
+
+</p>
+
+
+<p class="card-text mx-1 small_f " >
+        	"{{ post.author.profile.bio|slice:'20' }}.."
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% else %}
+<div class="container d-flex justify-content-center">
+	<span class="row ">
+	<svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-person-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+       <path fill-rule="evenodd" d="M8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10zm1.146-7.85a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+	</svg>
+	<p class="small_f ml-1">  user dont have profile</p>
+</span>
+</div>
+
+{% endif %}
+
+<br/>
+
+
+<div class="container d-flex justify-content-center small_f">
+	<h>COMMENTS...</h>
+</div>
+<hr>
+<br/>
+{% if not post.comments.all %}
+	No Comments Yet...<a href="{% url 'add_comment' post.pk %}">Add One</a>
+{% else %}
+
+<div class="container commnt_sec ">
+	<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+<br/><br/>
+
+	{% for comment in post.comments.all %}
+		<p class="small_f">
+			<span>
+				<svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
+                      <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                      <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+                </svg>
+				{{ comment.name }}
+			</span>
+
+			{{ comment.date_added|upper }}
+		</p>
+
+
+
+		{{ comment.body }}
+		<br/><br/>
+	    <hr>
+
+
+	{% endfor %}
+
+{% endif %}
+</div>
+<br/>
+
+
+<script>
+	document.body.style.backgroundColor = "#fff";
+</script>
+<script>
+      function playunlike() {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+    </script>
+<script>
+      function playliked() {
+        var audio = document.getElementById("audio2");
+        audio.play();
+      }
+    </script>
+<br/><br/>
+{% endblock %}
